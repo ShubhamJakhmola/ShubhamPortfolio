@@ -56,7 +56,8 @@ body {
   line-height: 1.5;
   color: #212529;
   text-align: left;
-  background-color: #fff;
+  background: rgb(211,227,229);
+  background: radial-gradient(circle, rgba(211,227,229,1) 0%, rgba(255,222,222,0.9557072829131653) 100%); 
 }
 
 [tabindex="-1"]:focus {
@@ -11610,14 +11611,21 @@ pre .code {
   border-right: none;
 }
 .contact{
-  margin-left: 7.5cm;
+  margin:auto;
+  
   color: #000;
 }
-.contact1{
-  margin-left: 10.5cm;
-  color: #000;
+@media screen and (max-width: 767px) {
+  .contact-form-row {
+      display: flex;
+      flex-direction: column;
+  }
+  .contact-form-row .col-md-6 {
+      width: 100%;
+  }
 }
-.contact2{
-  margin-left: 8.5cm;
-  color:black;
+
+/* Additional CSS styles for center alignment */
+.center-content {
+  text-align: center;
 }
