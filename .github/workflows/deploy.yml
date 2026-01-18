@@ -1,9 +1,8 @@
-name: Deploy Static Website
+name: Deploy Static Site
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
   workflow_dispatch:
 
 permissions:
@@ -15,20 +14,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
+    # 🔥 THIS IS THE MISSING PIECE
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-     
-      - name: Validate site structure
+      - name: Validate site
         run: |
           if [ ! -f index.html ]; then
-            echo " index.html not found in repo root"
+            echo "❌ index.html not found"
             exit 1
           fi
-          echo "Static site structure looks good"
+          echo "✅ index.html found"
 
-      - name: Setup GitHub Pages
+      - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
 
       - name: Upload static files
